@@ -17,11 +17,11 @@
       "m": "ᒲ",
       "n": "リ",
       "o": "フ",
-      "p": "¡!",
+      "p": "¡",
       "q": "ᑑ",
       "r": "።",
       "s": "ነ",
-      "t": "ﬧׅ",
+      "t": "ﬧ",
       "u": "⚍",
       "v": "⍊",
       "w": "∴",
@@ -35,7 +35,24 @@
       var normalInput = document.getElementById('normalInput');
       var sgaInput = document.getElementById('sgaInput');
 
-      var sgaText = "";
+      var from = sgaInput.value;
+      var to = "";
+
+      for (var i = 0; i < from.length; i++) {
+        var c = from.charAt(i);
+        var didAdd = false;
+        for (const key in dict) {
+          if (dict[key] == c) {
+            to += key;
+            didAdd = true;
+          }
+        }
+        if (!didAdd) {
+          to += c;
+        }
+      }
+
+      normalInput.value = to;
     }
 
     function normalChanged() {
