@@ -1,37 +1,122 @@
 ﻿<html>
-  <head>
-    <script>
-      var dict = {
-        "a": "ᔑ",
-        "b": "ʖ",
-        "c": "ᓵ",
-        "d": "↸",
-        "e": "ŀ",
-        "f": "⎓",
-        "g": "ㅓ",
-        "h": "〒",
-        "i": "╎",
-        "j": "፧",
-        "k": "ꖌ",
-        "l": "ꖎ",
-        "m": "ᒲ",
-        "n": "リ",
-        "o": "フ",
-        "p": "¡!",
-        "q": "ᑑ",
-        "r": "።",
-        "s": "ነ",
-        "t": "ﬧׅ",
-        "u": "⚍",
-        "v": "⍊",
-        "w": "∴",
-        "x": "̇/",
-        "y": "॥",
-        "z": "ꖎ",
-      };
-    </script>
-  </head>
-  <body>
-    a
+<head>
+  <script>
+    var dict = {
+      "a": "ᔑ",
+      "b": "ʖ",
+      "c": "ᓵ",
+      "d": "↸",
+      "e": "ŀ",
+      "f": "⎓",
+      "g": "ㅓ",
+      "h": "〒",
+      "i": "╎",
+      "j": "፧",
+      "k": "ꖌ",
+      "l": "ꖎ",
+      "m": "ᒲ",
+      "n": "リ",
+      "o": "フ",
+      "p": "¡!",
+      "q": "ᑑ",
+      "r": "።",
+      "s": "ነ",
+      "t": "ﬧׅ",
+      "u": "⚍",
+      "v": "⍊",
+      "w": "∴",
+      "x": "̇/",
+      "y": "॥",
+      "z": "ꖎ",
+    };
+
+
+    function sgaChanged() {
+      var normalInput = document.getElementById('normalInput');
+      var sgaInput = document.getElementById('sgaInput');
+
+      var sgaText = "";
+    }
+
+    function normalChanged() {
+      var normalInput = document.getElementById('normalInput');
+      normalInput.value = normalInput.value.toLowerCase();
+      var sgaInput = document.getElementById('sgaInput');
+
+      var from = normalInput.value;
+      var to = "";
+
+      for (var i = 0; i < from.length; i++) {
+        var c = from.charAt(i);
+        if (dict.hasOwnProperty(c)) {
+          to += dict[c];
+        } else {
+          to += c;
+        }
+      }
+
+      sgaInput.value = to;
+    }
+
+    function onLoad() {
+      normalChanged();
+    }
+  </script>
+
+  <!-- ---------------------------------------------------------------------------
+    ------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------>
+
+  <style>
+    body {
+      font-family: Arial;
+    }
+
+    .flex-container {
+      display: flex;
+      background-color: DodgerBlue;
+      width: 100%;
+      height: 100%
+    }
+
+    .flex-container2 {
+      display: flex;
+      background-color: #DDDDDD;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .flex-container2 > textarea {
+      background-color: #f1f1f1;
+      margin: 10px;
+      padding: 20px;
+      font-size: 20px;
+      height: 100%;
+      resize: none;
+    }
+
+    a {
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+    }
+  </style>
+
+  <!-- ---------------------------------------------------------------------------
+    ------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------>
+
+</head>
+  <body onload="onLoad()">
+    <div class="flex-container">
+      <div class="flex-container2">
+        <a>Normal Text</a>
+        <textarea onkeyup="normalChanged()" id="normalInput">Made by GuyInGrey#4066. Sorry, no uppercase. SGA doesn't support it.</textarea>
+      </div>
+      <div class="flex-container2">
+        <a>Standard Galactic Alphabet (SGA)</a>
+        <textarea onkeyup="sgaChanged()" id="sgaInput"></textarea>
+      </div>
+    </div>
   </body>
 </html>
