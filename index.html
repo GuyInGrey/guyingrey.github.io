@@ -95,7 +95,7 @@
       display: flex;
       background-color: DodgerBlue;
       width: 100%;
-      height: 100%
+      flex-grow: 1;
     }
 
     .flex-container2 {
@@ -103,6 +103,12 @@
       background-color: #DDDDDD;
       flex-direction: column;
       flex: 1;
+    }
+
+    .flex-containerOuter {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
 
     .flex-container2 > textarea {
@@ -127,14 +133,23 @@
 
 </head>
   <body onload="onLoad()">
-    <div class="flex-container">
-      <div class="flex-container2">
-        <a>Normal Text</a>
-        <textarea onkeyup="normalChanged()" id="normalInput">Made by GuyInGrey#4066. Sorry, no uppercase. SGA doesn't support it.</textarea>
+    <div class="flex-containerOuter">
+      <div style="text-align: center;">
+        <img src="https://keenwiki.shikadi.net/i/5/5a/SGA-Keen3.png" />
       </div>
-      <div class="flex-container2">
-        <a>Standard Galactic Alphabet (SGA)</a>
-        <textarea onkeyup="sgaChanged()" id="sgaInput"></textarea>
+      <div class="flex-container">
+        <div class="flex-container2">
+          <a>Normal Text</a>
+          <textarea onkeyup="normalChanged()" id="normalInput">Made by GuyInGrey#4066. 
+Sorry, no uppercase. SGA doesn't technically support it. 
+For info on SGA:
+
+https://keenwiki.shikadi.net/wiki/Standard_Galactic_Alphabet</textarea>
+        </div>
+        <div class="flex-container2">
+          <a>Standard Galactic Alphabet (SGA)</a>
+          <textarea onkeyup="sgaChanged()" id="sgaInput"></textarea>
+        </div>
       </div>
     </div>
   </body>
