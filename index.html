@@ -33,29 +33,37 @@
         "x": "∕",
         "y": "॥",
         "z": "∩",
-        uppercase: '',
+        zeroWidthSpace: '​',
       };
 
-
       function sgaChanged() {
+        console.log(dict.zeroWidthSpace.length);
         var normalInput = document.getElementById('normalInput');
         var sgaInput = document.getElementById('sgaInput');
 
         var from = sgaInput.value;
         var to = "";
 
+        var upper = false;
+
         for (var i = 0; i < from.length; i++) {
           var c = from.charAt(i);
+          if (c == dict.zeroWidthSpace) {
+            upper = true;
+            continue;
+          }
+
           var didAdd = false;
           for (const key in dict) {
             if (dict[key] == c) {
-              to += key;
+              to += upper ? key.toUpperCase() : key;
               didAdd = true;
             }
           }
           if (!didAdd) {
-            to += c;
+            to += upper ? c.toUpperCase() : c;
           }
+          upper = false;
         }
 
         normalInput.value = to;
@@ -63,7 +71,6 @@
 
       function normalChanged() {
         var normalInput = document.getElementById('normalInput');
-        normalInput.value = normalInput.value.toLowerCase();
         var sgaInput = document.getElementById('sgaInput');
 
         var from = normalInput.value;
@@ -73,6 +80,8 @@
           var c = from.charAt(i);
           if (dict.hasOwnProperty(c)) {
             to += dict[c];
+          } else if (dict.hasOwnProperty(c.toLowerCase())) {
+            to += dict.zeroWidthSpace + dict[c.toLowerCase()];
           } else {
             to += c;
           }
@@ -115,13 +124,20 @@
       }
 
       .flex-container2 > textarea {
+        border: 3px solid grey;
         border-radius: 30px;
+        -webkit-border-radius: 30px;
+        -moz-border-radius: 30px;
         background-color: #f1f1f1;
         margin: 10px;
         padding: 20px;
         font-size: 20px;
         height: 100%;
         resize: none;
+      }
+
+      .flex-container2 > textarea:focus {
+        border: 3px solid black;
       }
 
       a {
@@ -145,7 +161,6 @@
         <div class="flex-container2">
           <a>Normal Text</a>
           <textarea onkeyup="normalChanged()" id="normalInput">Made by GuyInGrey#4066. 
-Sorry, no uppercase. SGA doesn't technically support it. 
 For info on SGA:
 
 https://keenwiki.shikadi.net/wiki/Standard_Galactic_Alphabet</textarea>
