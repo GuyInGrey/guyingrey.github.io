@@ -36,13 +36,21 @@
         zeroWidthSpace: '​',
       };
 
+      var uppercaseEnabled = true;
+
       function sgaChanged() {
-        console.log(dict.zeroWidthSpace.length);
         var normalInput = document.getElementById('normalInput');
         var sgaInput = document.getElementById('sgaInput');
 
         var from = sgaInput.value;
         var to = "";
+
+        if (!uppercaseEnabled) {
+          while (from.includes(dict.zeroWidthSpace)) {
+            from.replace(dict.zeroWidthSpace, "");
+          }
+          sgaInput.value = from;
+        }
 
         var upper = false;
 
@@ -71,6 +79,9 @@
 
       function normalChanged() {
         var normalInput = document.getElementById('normalInput');
+        if (!uppercaseEnabled) {
+          normalInput.value = normalInput.value.toLowerCase();
+        }
         var sgaInput = document.getElementById('sgaInput');
 
         var from = normalInput.value;
@@ -88,6 +99,19 @@
         }
 
         sgaInput.value = to;
+      }
+
+      function checkChanged(box) {
+        if (!box.checked) {
+          var r = confirm("Warning: This will remove all capitalization in the existing text. Confirm?");
+          if (!r) {
+            box.checked = true;
+            return;
+          }
+        }
+
+        uppercaseEnabled = box.checked;
+        normalChanged();
       }
 
       function onLoad() {
@@ -132,7 +156,14 @@
         font-size: 15px;
         font-weight: bold;
         color: #dcdde1;
-        margin-left: 10px;
+        margin-left: 15px;
+      }
+
+      .headerCheckboxLabel {
+        text-align: center;
+        font-size: 15px;
+        font-weight: bold;
+        color: #dcdde1;
       }
 
       .content {
@@ -170,6 +201,8 @@
         <a class="headerSubtext">This translator created by GuyInGrey.</a>
         <a class="headerSubtext" style="font-style: oblique;" target="_blank"
            href="https://keenwiki.shikadi.net/wiki/Standard_Galactic_Alphabet">More Info</a>
+        <input class="headerSubtext" type="checkbox" id="uppercaseEnabled" onchange="checkChanged(this);" checked>
+        <label class="headerCheckboxLabel" for="uppercaseEnabled">Encode Uppercase</label>
       </div>
       <div class="content">
         <textarea onkeyup="normalChanged()" id="normalInput">The quick brown fox jumps over the lazy dog.
