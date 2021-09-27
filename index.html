@@ -102,48 +102,54 @@
     <style>
       body {
         font-family: Arial;
+        margin: 0px;
       }
 
-      .flex-container {
+      .flexOuter {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .header {
+        background-color: #0097e6;
+        padding: 10px;
+      }
+
+      .headerText {
+        text-align: center;
+        font-size: 25px;
+        font-weight: bold;
+        color: #f5f6fa;
+      }
+
+      .headerSubtext {
+        text-align: center;
+        font-size: 15px;
+        font-weight: bold;
+        color: #dcdde1;
+      }
+
+      .content {
         display: flex;
         width: 100%;
         flex-grow: 1;
       }
 
-      .flex-container2 {
-        display: flex;
-        /*background-color: #DDDDDD;*/
-        flex-direction: column;
-        flex: 1;
-      }
-
-      .flex-containerOuter {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-      }
-
-      .flex-container2 > textarea {
-        border: 3px solid grey;
-        border-radius: 30px;
-        -webkit-border-radius: 30px;
-        -moz-border-radius: 30px;
-        background-color: #f1f1f1;
-        margin: 10px;
+      .content > textarea {
+        flex-grow: 1;
+        background-color: #353b48;
         padding: 20px;
         font-size: 20px;
         height: 100%;
         resize: none;
+        border: 0px solid black;
+        color: #f5f6fa;
       }
 
-      .flex-container2 > textarea:focus {
-        border: 3px solid black;
-      }
-
-      a {
-        text-align: center;
-        font-size: 25px;
-        font-weight: bold;
+      .content > textarea:focus {
+        outline-style: none;
+        box-shadow: none;
       }
     </style>
 
@@ -153,22 +159,20 @@
 
   </head>
   <body onload="onLoad()">
-    <div class="flex-containerOuter">
-      <div style="text-align: center;">
-        <!--<img src="https://keenwiki.shikadi.net/i/5/5a/SGA-Keen3.png" />-->
+    <div class="flexOuter">
+      <div class="header">
+        <a class="headerText">SGA Converter</a>&nbsp;&nbsp;&nbsp;
+        <a class="headerSubtext">This translator created by GuyInGrey.</a>&nbsp;&nbsp;&nbsp;
+        <a class="headerSubtext" style="font-style: oblique;" target="_blank"
+           href="https://keenwiki.shikadi.net/wiki/Standard_Galactic_Alphabet">More Info</a>
       </div>
-      <div class="flex-container">
-        <div class="flex-container2">
-          <a>Normal Text</a>
-          <textarea onkeyup="normalChanged()" id="normalInput">Made by GuyInGrey#4066. 
-For info on SGA:
+      <div class="content">
+        <textarea onkeyup="normalChanged()" id="normalInput">The quick brown fox jumps over the lazy dog.
 
-https://keenwiki.shikadi.net/wiki/Standard_Galactic_Alphabet</textarea>
-        </div>
-        <div class="flex-container2">
-          <a>Standard Galactic Alphabet (SGA)</a>
-          <textarea onkeyup="sgaChanged()" id="sgaInput"></textarea>
-        </div>
+Sphinx of black quartz, judge my vow.
+
+The five boxing wizards jump quickly.</textarea>
+        <textarea onkeyup="sgaChanged()" id="sgaInput" style="border-left: 1px solid #f5f6fa;"></textarea>
       </div>
     </div>
   </body>
