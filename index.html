@@ -47,7 +47,7 @@
 
         if (!uppercaseEnabled) {
           while (from.includes(dict.zeroWidthSpace)) {
-            from.replace(dict.zeroWidthSpace, "");
+            from = from.replace(dict.zeroWidthSpace, "");
           }
           sgaInput.value = from;
         }
