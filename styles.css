@@ -4,13 +4,14 @@
 @import url('https://fonts.cdnfonts.com/css/common-pixel');
 
 body {
-  /*font-family: Arial;*/
-  font-family: "ＭＳ Ｐゴシック";
   margin: 0px;
   font-family: 'Common Pixel', sans-serif;
 }
 
 img {
+  /*
+    The point of these is to stop anti-aliasing on the images.
+  */
   image-rendering: optimizeSpeed; /* STOP SMOOTHING, GIVE ME SPEED  */
   image-rendering: -moz-crisp-edges; /* Firefox                        */
   image-rendering: -o-crisp-edges; /* Opera                          */
@@ -28,14 +29,11 @@ img {
 
 .header {
   background-color: #0097e6;
-  height: 48px;
 }
 
 .headerIcon {
-  height: 32px;
   position: absolute;
-  top: 8px;
-  left: 8px;
+  margin: 8px 0px 0px 8px;
 }
 
 .headerText {
@@ -69,17 +67,16 @@ img {
 }
 
 .content > textarea {
-  flex-grow: 1;
   background-color: #353b48;
+  color: #f5f6fa;
+  flex: 1;
+  flex-grow: 1;
   padding: 20px;
   font-size: 20px;
-  height: 100%;
   resize: none;
-  border: 0px solid black;
-  color: #f5f6fa;
+  border: unset;
 }
 
 .content > textarea:focus {
   outline-style: none;
-  box-shadow: none;
 }
