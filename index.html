@@ -1,216 +1,33 @@
-﻿<html>
-  <head>
-    <meta http-equiv='cache-control' content='no-cache'>
-    <meta http-equiv='expires' content='0'>
-    <meta http-equiv='pragma' content='no-cache'>
-    <title>Grey's SGA Translator</title>
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv='cache-control' content='no-cache'>
+  <meta http-equiv='expires' content='0'>
+  <meta http-equiv='pragma' content='no-cache'>
 
-    <script>
-      var dict = {
-        "a": "ᔑ",
-        "b": "ʖ",
-        "c": "ᓵ",
-        "d": "↸",
-        "e": "ŀ",
-        "f": "⎓",
-        "g": "ㅓ",
-        "h": "〒",
-        "i": "╎",
-        "j": "፧",
-        "k": "ꖌ",
-        "l": "ꖎ",
-        "m": "ᒲ",
-        "n": "リ",
-        "o": "フ",
-        "p": "¡",
-        "q": "ᑑ",
-        "r": "።",
-        "s": "ነ",
-        "t": "ﬧ",
-        "u": "⚍",
-        "v": "⍊",
-        "w": "∴",
-        "x": "∕",
-        "y": "॥",
-        "z": "∩",
-        zeroWidthSpace: '​',
-      };
+  <title>Grey's SGA Translator</title>
 
-      var uppercaseEnabled = true;
-
-      function sgaChanged() {
-        var normalInput = document.getElementById('normalInput');
-        var sgaInput = document.getElementById('sgaInput');
-
-        var from = sgaInput.value;
-        var to = "";
-
-        if (!uppercaseEnabled) {
-          while (from.includes(dict.zeroWidthSpace)) {
-            from = from.replace(dict.zeroWidthSpace, "");
-          }
-          sgaInput.value = from;
-        }
-
-        var upper = false;
-
-        for (var i = 0; i < from.length; i++) {
-          var c = from.charAt(i);
-          if (c == dict.zeroWidthSpace) {
-            upper = true;
-            continue;
-          }
-
-          var didAdd = false;
-          for (const key in dict) {
-            if (dict[key] == c) {
-              to += upper ? key.toUpperCase() : key;
-              didAdd = true;
-            }
-          }
-          if (!didAdd) {
-            to += upper ? c.toUpperCase() : c;
-          }
-          upper = false;
-        }
-
-        normalInput.value = to;
-      }
-
-      function normalChanged() {
-        var normalInput = document.getElementById('normalInput');
-        if (!uppercaseEnabled) {
-          normalInput.value = normalInput.value.toLowerCase();
-        }
-        var sgaInput = document.getElementById('sgaInput');
-
-        var from = normalInput.value;
-        var to = "";
-
-        for (var i = 0; i < from.length; i++) {
-          var c = from.charAt(i);
-          if (dict.hasOwnProperty(c)) {
-            to += dict[c];
-          } else if (dict.hasOwnProperty(c.toLowerCase())) {
-            to += dict.zeroWidthSpace + dict[c.toLowerCase()];
-          } else {
-            to += c;
-          }
-        }
-
-        sgaInput.value = to;
-      }
-
-      function checkChanged(box) {
-        if (!box.checked) {
-          var r = confirm("Warning: This will remove all capitalization in the existing text. Confirm?");
-          if (!r) {
-            box.checked = true;
-            return;
-          }
-        }
-
-        uppercaseEnabled = box.checked;
-        normalChanged();
-      }
-
-      function onLoad() {
-        normalChanged();
-      }
-    </script>
-
-    <!------------------------------------------------------------------------------
-      ------------------------------------------------------------------------------
-      ------------------------------------------------------------------------------>
-
-    <style>
-      /*
-        https://flatuicolors.com/palette/gb
-      */
-
-      body {
-        font-family: Arial;
-        margin: 0px;
-      }
-
-      .flexOuter {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-      }
-
-      .header {
-        background-color: #0097e6;
-        padding: 10px;
-      }
-
-      .headerText {
-        text-align: center;
-        font-size: 25px;
-        font-weight: bold;
-        color: #f5f6fa;
-      }
-
-      .headerSubtext {
-        text-align: center;
-        font-size: 15px;
-        font-weight: bold;
-        color: #dcdde1;
-        margin-left: 15px;
-      }
-
-      .headerCheckboxLabel {
-        text-align: center;
-        font-size: 15px;
-        font-weight: bold;
-        color: #dcdde1;
-      }
-
-      .content {
-        display: flex;
-        width: 100%;
-        flex-grow: 1;
-      }
-
-      .content > textarea {
-        flex-grow: 1;
-        background-color: #353b48;
-        padding: 20px;
-        font-size: 20px;
-        height: 100%;
-        resize: none;
-        border: 0px solid black;
-        color: #f5f6fa;
-      }
-
-      .content > textarea:focus {
-        outline-style: none;
-        box-shadow: none;
-      }
-    </style>
-
-    <!------------------------------------------------------------------------------
-      ------------------------------------------------------------------------------
-      ------------------------------------------------------------------------------>
-
-  </head>
+  <link rel="stylesheet" href="styles.css">
+  <script src="scripts.js"></script>
+  <link rel="icon" type="image/png" href="favicon.png">
+</head>
   <body onload="onLoad()">
     <div class="flexOuter">
       <div class="header">
-        <a class="headerText">SGA Converter</a>
-        <a class="headerSubtext">This translator created by GuyInGrey.</a>
-        <a class="headerSubtext" style="font-style: oblique;" target="_blank"
+        <img class="headerIcon" src="icon.png" />
+        <a class="headerText headerTitle">SGA Converter</a>
+        <a class="headerText headerSubtext">This translator created by GuyInGrey.</a>
+        <a class="headerText headerSubtext" style="font-style: oblique;" target="_blank"
            href="https://keenwiki.shikadi.net/wiki/Standard_Galactic_Alphabet">More Info</a>
-        <input class="headerSubtext" type="checkbox" id="uppercaseEnabled" onchange="checkChanged(this);" checked>
+        <input class="headerText headerSubtext" type="checkbox" id="uppercaseEnabled" onchange="checkChanged(this);" checked>
         <label class="headerCheckboxLabel" for="uppercaseEnabled">Encode Uppercase</label>
       </div>
       <div class="content">
-        <textarea onkeyup="normalChanged()" id="normalInput">The quick brown fox jumps over the lazy dog.
+        <textarea onkeyup="normalChanged()" id="normalInput" 
+          style="font-family: 'Common Pixel', sans-serif;">Sphinx of black quartz, judge my vow.
 
-Sphinx of black quartz, judge my vow.
-
-The five boxing wizards jump quickly.</textarea>
-        <textarea onkeyup="sgaChanged()" id="sgaInput" style="border-left: 1px solid #718093; "></textarea>
+A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</textarea>
+        <textarea onkeyup="sgaChanged()" id="sgaInput" style="border-left: 1px solid #718093; "/>
       </div>
     </div>
   </body>

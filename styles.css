@@ -1,0 +1,85 @@
+﻿/*
+  https://flatuicolors.com/palette/gb
+*/
+@import url('http://fonts.cdnfonts.com/css/common-pixel');
+
+body {
+  /*font-family: Arial;*/
+  font-family: "ＭＳ Ｐゴシック";
+  margin: 0px;
+  font-family: 'Common Pixel', sans-serif;
+}
+
+img {
+  image-rendering: optimizeSpeed; /* STOP SMOOTHING, GIVE ME SPEED  */
+  image-rendering: -moz-crisp-edges; /* Firefox                        */
+  image-rendering: -o-crisp-edges; /* Opera                          */
+  image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+  image-rendering: pixelated; /* Chrome */
+  image-rendering: optimize-contrast; /* CSS3 Proposed                  */
+  -ms-interpolation-mode: nearest-neighbor; /* IE8+                           */
+}
+
+.flexOuter {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background-color: #0097e6;
+  height: 48px;
+}
+
+.headerIcon {
+  height: 32px;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+}
+
+.headerText {
+  margin: 20px 0px 15px 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.headerTitle {
+  margin-left: 48px;
+  font-size: 25px;
+  color: #f5f6fa;
+}
+
+.headerSubtext {
+  font-size: 15px;
+  color: #dcdde1;
+}
+
+.headerCheckboxLabel {
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  color: #dcdde1;
+}
+
+.content {
+  display: flex;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.content > textarea {
+  flex-grow: 1;
+  background-color: #353b48;
+  padding: 20px;
+  font-size: 20px;
+  height: 100%;
+  resize: none;
+  border: 0px solid black;
+  color: #f5f6fa;
+}
+
+.content > textarea:focus {
+  outline-style: none;
+  box-shadow: none;
+}
