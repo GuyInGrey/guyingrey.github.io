@@ -1,10 +1,15 @@
 ﻿/*
   https://flatuicolors.com/palette/gb
 */
-@import url('https://fonts.cdnfonts.com/css/common-pixel');
+/*@import url('https://fonts.cdnfonts.com/css/common-pixel');*/
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
 body {
   margin: 0px;
+}
+
+.floatRight {
+  float: right;
 }
 
 img {
@@ -20,7 +25,7 @@ img {
   -ms-interpolation-mode: nearest-neighbor; /* IE8+                           */
 }
 
-.flexOuter {
+.page {
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -28,6 +33,7 @@ img {
 
 .header {
   background-color: #0097e6;
+  vertical-align: middle;
 }
 
 .headerIcon {
@@ -36,38 +42,40 @@ img {
 }
 
 .headerText {
-  margin: 20px 10px 15px 10px;
+  margin: 10px 10px 10px 10px;
   text-align: center;
-  font-family: 'Common Pixel', sans-serif;
+  /*font-family: 'Common Pixel', sans-serif;*/
+  font-family: 'VT323', monospace;
   vertical-align: middle;
-}
-
-.floatRight {
-  float: right;
 }
 
 .headerTitle {
   margin-left: 48px;
   font-size: 25px;
   color: #f5f6fa;
+  vertical-align: middle;
 }
 
 .headerSubtext {
-  font-size: 15px;
+  font-size: 20px;
   color: #dcdde1;
+  vertical-align: middle;
 }
 
 .headerCheckboxLabel {
   text-align: center;
-  font-size: 15px;
+  font-size: 20px;
   color: #dcdde1;
-  font-family: 'Common Pixel', sans-serif;
+  /*font-family: 'Common Pixel', sans-serif;*/
+  font-family: 'VT323', monospace;
+  vertical-align: middle;
 }
 
 .versionNumber {
   color: #e84118;
   font-family: Arial;
   font-weight: bold;
+  vertical-align: middle;
 }
 
 .content {
@@ -106,7 +114,8 @@ textarea {
 }
 
 .button {
-  font-family: 'Common Pixel', sans-serif;
+  /*font-family: 'Common Pixel', sans-serif;*/
+  font-family: 'VT323', monospace;
   cursor: pointer;
   background-color: #718093;
   color: #f5f6fa;
