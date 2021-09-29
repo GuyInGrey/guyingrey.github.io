@@ -23,17 +23,24 @@
     <img class="headerIcon" src="icon.png" alt="SGA" style="width:32px;height:32px" />
     <a class="headerText headerTitle">SGA Converter</a>
     <a class="headerText headerSubtext">This translator created by GuyInGrey.</a>
-    <a class="headerText headerSubtext" style="font-style: oblique;" target="_blank"
-        href="https://keenwiki.shikadi.net/wiki/Standard_Galactic_Alphabet">More Info</a>
-    <input class="headerText headerSubtext" type="checkbox" id="uppercaseEnabled" onchange="checkChanged(this);" checked>
+    <button class="button">
+      <a target="_blank" href="https://keenwiki.shikadi.net/wiki/Standard_Galactic_Alphabet" class="buttonLink">More Info</a>
+    </button>
+    <input class="headerText headerSubtext checkbox" type="checkbox" id="uppercaseEnabled" onchange="checkChanged(this);" checked/>
     <label class="headerCheckboxLabel" for="uppercaseEnabled">Encode Uppercase</label>
   </div>
   <div class="content">
-    <textarea onkeyup="normalChanged()" id="normalInput" 
-      style="font-family: 'Common Pixel', sans-serif;">Sphinx of black quartz, judge my vow.
+    <div class="textInputOuter">
+      <button class="button copyButton" onclick="normalCopy()">Copy</button>
+      <textarea onkeyup="normalChanged()" id="normalInput"
+            style="font-family: 'Common Pixel', sans-serif;">Sphinx of black quartz, judge my vow.
 
 A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</textarea>
-    <textarea onkeyup="sgaChanged()" id="sgaInput" style="border-left: 1px solid #718093; "></textarea>
+    </div>
+    <div class="textInputOuter">
+      <button class="button copyButton" onclick="sgaCopy()">Copy</button>
+      <textarea onkeyup="sgaChanged()" id="sgaInput" style="border-left: 1px solid #718093;"></textarea>
+    </div>
   </div>
 </div>
 

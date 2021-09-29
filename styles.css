@@ -5,7 +5,6 @@
 
 body {
   margin: 0px;
-  font-family: 'Common Pixel', sans-serif;
 }
 
 img {
@@ -40,6 +39,8 @@ img {
   margin: 20px 0px 15px 20px;
   font-weight: bold;
   text-align: center;
+  font-family: 'Common Pixel', sans-serif;
+  vertical-align: middle;
 }
 
 .headerTitle {
@@ -58,6 +59,7 @@ img {
   font-size: 15px;
   font-weight: bold;
   color: #dcdde1;
+  font-family: 'Common Pixel', sans-serif;
 }
 
 .content {
@@ -66,17 +68,83 @@ img {
   flex-grow: 1;
 }
 
-.content > textarea {
-  background-color: #353b48;
-  color: #f5f6fa;
+.textInputOuter {
   flex: 1;
   flex-grow: 1;
-  padding: 20px;
-  font-size: 20px;
   resize: none;
-  border: unset;
+  text-align: center;
+  background-color: #353b48;
 }
 
-.content > textarea:focus {
+textarea {
+  border: unset;
+  background-color: #353b48;
+  color: #f5f6fa;
+  padding: 20px;
+  padding-top: 40px;
   outline-style: none;
+  height: 100%;
+  box-sizing: border-box;
+  width: 100%;
+  display: block;
+  text-align: left;
+  overflow: hidden;
+  font-size: 20px;
+}
+
+.buttonLink {
+  color: #f5f6fa;
+  text-decoration: none;
+}
+
+.button {
+  font-family: 'Common Pixel', sans-serif;
+  cursor: pointer;
+  background-color: #718093;
+  color: #f5f6fa;
+  border: none;
+  padding: 5px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.1s;
+  border-radius: 8px;
+}
+
+.button:hover {
+  background-color: #44bd32;
+  color: white;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,1), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.button:active {
+  transform: translateY(-4px);
+}
+
+.copyButton {
+  position: absolute;
+  margin-top: 5px;
+}
+
+.checkbox {
+  background-color: #718093;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  -webkit-appearance: none;
+  margin-top: 14px;
+  margin-bottom: 14px;
+  transition-duration: 0.1s;
+}
+
+.checkbox:checked {
+  background-color: #44bd32;
+}
+
+.checkbox:hover {
+  background-color: #44bd32;
+  background-color: #44bd32;
+  color: white;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,1), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
