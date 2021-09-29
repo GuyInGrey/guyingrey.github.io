@@ -36,11 +36,14 @@ img {
 }
 
 .headerText {
-  margin: 20px 0px 15px 20px;
-  font-weight: bold;
+  margin: 20px 10px 15px 10px;
   text-align: center;
   font-family: 'Common Pixel', sans-serif;
   vertical-align: middle;
+}
+
+.floatRight {
+  float: right;
 }
 
 .headerTitle {
@@ -57,9 +60,14 @@ img {
 .headerCheckboxLabel {
   text-align: center;
   font-size: 15px;
-  font-weight: bold;
   color: #dcdde1;
   font-family: 'Common Pixel', sans-serif;
+}
+
+.versionNumber {
+  color: #e84118;
+  font-family: Arial;
+  font-weight: bold;
 }
 
 .content {
