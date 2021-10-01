@@ -63,7 +63,6 @@ body {
 }
 
 .contentItem {
-  flex-grow: 1;
   padding: 5vmin 20vmin 5vmin 20vmin;
   position: relative;
   width: 50%;
@@ -117,6 +116,6 @@ body {
 }
 
 .github > img {
-  width: 130px;
+  width: 10vw;
   height: auto;
 }
