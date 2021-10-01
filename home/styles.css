@@ -64,12 +64,12 @@ body {
   font-size: 3vw;
   display: inline-block;
   transition-duration: 0.1s;
-  text-shadow: 3px 3px 2px black;
+  text-shadow: 3px 3px 0px black;
 }
 
 .header > a:hover {
   color: #636e72;
-  text-shadow: 7px 7px 0px black;
+  text-shadow: 7px 7px 2px black;
   transform: translate(-10%, -10%);
 }
 
