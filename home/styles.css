@@ -44,26 +44,29 @@ body {
   flex-grow: 1;
   display: flex;
   flex-flow: column;
-  display: block;
 }
 
 .contentItem {
   flex-grow: 1;
   padding: 5vh 20vh 5vh 20vh;
-  text-align: center;
   position: relative;
+  width: 50%;
+  align-self: center;
+  text-align: center;
 }
 
 .contentImage {
   width: 100%;
   height: auto;
-  transition-duration: .5s;
-  filter: brightness(50%);
+  transition-duration: 0.1s;
+  -webkit-filter: grayscale(100%) blur(5px) brightness(50%);
+  box-shadow: 25px 25px 10px black;
 }
 
 .contentImage:hover {
   width: 90%;
   height: auto;
+  -webkit-filter: blur(2px) brightness(50%);
 }
 
 .contentText {
@@ -77,4 +80,5 @@ body {
   pointer-events: none;
   color: #dfe6e9;
   font-size: 50px;
+  text-shadow: 10px 10px 5px black;
 }
