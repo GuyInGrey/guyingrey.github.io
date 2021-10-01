@@ -52,8 +52,16 @@ body {
 }
 
 .header > img {
+  padding-top: 3vh;
   width: 35vw;
   height: auto;
+}
+
+.subText {
+  width: 100%;
+  text-align: center;
+  color: #dfe6e9;
+  text-shadow: 3px 3px 2px black;
 }
 
 .content {
@@ -73,8 +81,7 @@ body {
 .contentImage {
   width: 100%;
   height: auto;
-/*  transition-duration: 0.1s;
-  -webkit-filter: grayscale(100%) brightness(50%);*/
+  box-shadow: 25px 25px 2px black;
 
   transition: all 0.3s ease;
 
@@ -82,13 +89,11 @@ body {
   -moz-filter: grayscale(100%) brightness(50%);
   filter: grayscale(100%) brightness(50%);
 
-  box-shadow: 25px 25px 2px black;
 }
 
 .contentImage:hover {
   width: 90%;
   height: auto;
-/*  -webkit-filter: brightness(50%);*/
 
   -webkit-filter: grayscale(0%) brightness(75%);
   -moz-filter: grayscale(0%) brightness(75%);
