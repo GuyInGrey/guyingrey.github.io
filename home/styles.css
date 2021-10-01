@@ -57,6 +57,22 @@ body {
   height: auto;
 }
 
+.header > a {
+  padding-top: 3vh;
+  padding-bottom: 1vh;
+  color: #dfe6e9;
+  font-size: 3vw;
+  display: inline-block;
+  transition-duration: 0.1s;
+  text-shadow: 3px 3px 2px black;
+}
+
+.header > a:hover {
+  color: #636e72;
+  text-shadow: 7px 7px 0px black;
+  transform: translate(-10%, -10%);
+}
+
 .subText {
   width: 100%;
   text-align: center;
@@ -112,7 +128,6 @@ body {
   color: #dfe6e9;
   font-size: 4vmin;
   text-shadow: 10px 10px 2px black;
-  font-weight: bold;
 }
 
 .github {
@@ -124,4 +139,9 @@ body {
 .github > img {
   width: 10vw;
   height: auto;
+  transition-duration: 0.3s;
+}
+
+.github > img:hover {
+  width: 11vw;
 }
