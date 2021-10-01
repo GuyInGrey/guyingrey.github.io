@@ -1,0 +1,80 @@
+body {
+  margin: 0px;
+  font-family: Rubik, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Roboto, system-ui, sans-serif;
+  background: url("/home/background.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: auto;
+}
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2d3436;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b2bec3;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #636e72;
+}
+
+.page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  width: 100%;
+  text-align: center;
+}
+
+.header > img {
+  width: 30vh;
+  height: auto;
+}
+
+.content {
+  flex-grow: 1;
+  display: flex;
+  flex-flow: column;
+  display: block;
+}
+
+.contentItem {
+  flex-grow: 1;
+  padding: 5vh 20vh 5vh 20vh;
+  text-align: center;
+  position: relative;
+}
+
+.contentImage {
+  width: 100%;
+  height: auto;
+  transition-duration: .5s;
+  filter: brightness(50%);
+}
+
+.contentImage:hover {
+  width: 90%;
+  height: auto;
+}
+
+.contentText {
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  position: absolute;
+
+  pointer-events: none;
+  color: #dfe6e9;
+  font-size: 50px;
+}
