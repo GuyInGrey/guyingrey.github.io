@@ -113,6 +113,5 @@ function normalCopy() {
 
 function sgaCopy() {
   var normalInput = document.getElementById('sgaInput');
-  console.log((normalInput.value.match(/\n/g) || []).length);
   copyTextToClipboard(normalInput.value);
 }
