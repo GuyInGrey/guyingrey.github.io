@@ -1,0 +1,35 @@
+<html>
+<head>
+<script>
+  let has = [];
+
+  let btn = () => {
+    var input = document.getElementById("myInput");
+    var output = document.getElementById("output");
+    v = input.value;
+    if (has.includes(v)) {
+      output.innerText = "Already have, do not add.";
+    } else {
+      output.innerText = "Add, don't have.";
+      has.push(v);
+    }
+  };
+  
+  window.onload = function() {
+    var input = document.getElementById("myInput");
+    input.addEventListener("keyup", function(event) {
+      if (event.keyCode === 13) {
+       event.preventDefault();
+       document.getElementById("myBtn").click();
+      }
+    });
+  }
+</script>
+</head>
+<body>
+    <a>Input Barcode</a>
+    <input type="text" id="myInput"></input>
+    <button id="myBtn" onclick="btn()">Button</button><br>
+    <a id="output">Waiting...</a>
+</body>
+</html>
