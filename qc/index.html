@@ -13,8 +13,9 @@
       output.innerText = "Add, don't have.";
       has.push(v);
     }
+    input.value = "";
   };
-  
+   
   window.onload = function() {
     var input = document.getElementById("myInput");
     input.addEventListener("keyup", function(event) {
