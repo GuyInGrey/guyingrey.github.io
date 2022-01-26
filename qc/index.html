@@ -1,21 +1,72 @@
 <html>
 <head>
 <script>
-  let has = [];
+  let get = (id, callback) => {
+  console.log("Connecting...");
+    let socket = new WebSocket("ws://sadmin.puttingheavenfirst.com:8282");
+    socket.onmessage = (msg) => {
+      callback(msg.data);
+    };
+    socket.onopen = function(e) {
+      console.log("Connected");
+      socket.send(id);
+      console.log("Sent");
+    };
+  };
+  
+  let split = (code) => {
+    let a = code.lastIndexOf("-");
+    let size = code.substring(a + 1);
+    code = code.substring(0, a);
+    a = code.lastIndexOf("-");
+    let color = code.substring(a + 1);
+    code = code.substring(0, a);
+    let sku = code;
+    return {
+      sku: sku,
+      color: color,
+      size: size,
+    }
+  };
 
-  let btn = () => {
+  let has = [];
+  let cache = [];
+
+  let btn = async () => {
     var input = document.getElementById("myInput");
     var output = document.getElementById("output");
     v = input.value;
-    if (has.includes(v)) {
-      output.innerText = "Already have, do not add.";
-    } else {
-      output.innerText = "Add, don't have.";
-      has.push(v);
+    
+    if (cache.includes(v)) {
+      output.innerText = "Do not add.";
+      input.value = "";
+      return;
     }
-    input.value = "";
+    
+    cache.push(v);
+    
+    get(v, (code) => {
+      console.log(code);
+      
+      if (code instanceof Blob) {
+        output.innerText = "Invalid scan.";
+      }
+      else if (has.includes(code)) {
+        output.innerText = "Do not add.";
+      } else {
+        output.innerText = "Add " + code;
+        console.log(split(code));
+        has.push(code);
+      }
+      input.value = "";
+
+      has = has.sort();
+        
+      var list = document.getElementById("list");
+      list.innerText = (has.map(h => h + "\n")).toString().replace(",", "");
+    });
   };
-   
+  
   window.onload = function() {
     var input = document.getElementById("myInput");
     input.addEventListener("keyup", function(event) {
@@ -31,6 +82,8 @@
     <a>Input Barcode</a>
     <input type="text" id="myInput"></input>
     <button id="myBtn" onclick="btn()">Button</button><br>
-    <a id="output">Waiting...</a>
+    <a id="output">Waiting...</a><br><br>
+    <b>List: </b><br>
+    <a id="list"></a>
 </body>
 </html>
