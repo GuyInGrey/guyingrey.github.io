@@ -3,7 +3,7 @@
 <script>
   let get = (id, callback) => {
   console.log("Connecting...");
-    let socket = new WebSocket("ws://sadmin.puttingheavenfirst.com:8282");
+    let socket = new WebSocket("wss://sadmin.puttingheavenfirst.com:8282");
     socket.onmessage = (msg) => {
       callback(msg.data);
     };
@@ -63,7 +63,7 @@
       has = has.sort();
         
       var list = document.getElementById("list");
-      list.innerText = (has.map(h => h + "\n")).toString().replace(",", "");
+      list.innerText = "Count: " + has.length + "\n" + (has.map(h => h + "\n")).toString().replace(",", "");
     });
   };
   
