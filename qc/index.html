@@ -1,6 +1,45 @@
 <html>
 <head>
 <script>
+  var audioContext = null;
+  var oscillatorNode = null;
+  var stopTime = 0;
+
+  function beep (frequency, durationSec, ramp=false)
+  {
+      if (oscillatorNode == null) {
+          audioContext = new (window.AudioContext || window.webkitAudioContext) ();
+          stopTime = audioContext.currentTime;
+
+          oscillatorNode = audioContext.createOscillator();
+          oscillatorNode.type = "sine";
+          oscillatorNode.connect (audioContext.destination);
+          if (ramp) {
+              oscillatorNode.frequency.setValueAtTime (frequency, stopTime);
+          }
+          oscillatorNode.start ();
+          oscillatorNode.onended = function() {
+              oscillatorNode = null;
+              audioContext = null;
+          }
+      }
+
+      if (ramp) {
+          oscillatorNode.frequency.linearRampToValueAtTime (frequency, stopTime); // value in hertz
+      } else {
+          oscillatorNode.frequency.setValueAtTime (frequency, stopTime);  // value in hertz
+      }
+
+      stopTime += durationSec;
+      oscillatorNode.stop (stopTime);
+  }
+
+
+
+
+
+
+
   let get = (id, callback) => {
   console.log("Connecting...");
     let socket = new WebSocket("wss://sadmin.puttingheavenfirst.com");
@@ -53,8 +92,10 @@
       }
       else if (has.includes(code)) {
         output.innerText = "Do not add.";
+        beep(300, 0.2);
       } else {
         output.innerText = "Add " + code;
+        beep(1000, 0.2);
         console.log(split(code));
         has.push(code);
       }
