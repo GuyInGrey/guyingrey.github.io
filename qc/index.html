@@ -3,7 +3,7 @@
 <script>
   let get = (id, callback) => {
   console.log("Connecting...");
-    let socket = new WebSocket("wss://sadmin.puttingheavenfirst.com:8282");
+    let socket = new WebSocket("wss://sadmin.puttingheavenfirst.com");
     socket.onmessage = (msg) => {
       callback(msg.data);
     };
