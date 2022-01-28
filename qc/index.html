@@ -2,6 +2,15 @@
 
 <head>
   <script>
+    console.log("Connecting to Grey's server...");
+    let socket = new WebSocket("wss://sadmin.puttingheavenfirst.com");
+    socket.onmessage = (msg) => {
+      callback(msg.data);
+    };
+    socket.onopen = function (e) {
+      console.log("Connected");
+    };
+
     var audioContext = null;
     var oscillatorNode = null;
     var stopTime = 0;
@@ -41,16 +50,10 @@
 
 
     let get = (id, callback) => {
-      console.log("Connecting...");
-      let socket = new WebSocket("wss://sadmin.puttingheavenfirst.com");
       socket.onmessage = (msg) => {
         callback(msg.data);
       };
-      socket.onopen = function (e) {
-        console.log("Connected");
-        socket.send(id);
-        console.log("Sent");
-      };
+      socket.send(id);
     };
 
     let split = (code) => {
@@ -61,6 +64,20 @@
       let color = code.substring(a + 1);
       code = code.substring(0, a);
       let sku = code;
+
+      if (size.endsWith("WC")) {
+        size = size.substring(0, size.length - 2);
+        sku = "WC - " + sku;
+      }
+      if (size.endsWith("XWC")) {
+        size = size.substring(0, size.length - 2);
+        sku = "XWC - " + sku;
+      }
+      if (size.endsWith("WD")) {
+        size = size.substring(0, size.length - 2);
+        sku = "WD - " + sku;
+      }
+
       return {
         sku: sku,
         color: color,
@@ -85,6 +102,7 @@
 
       cache.push(v);
 
+      input.value = "";
       get(v, (code) => {
         console.log(code);
 
@@ -92,7 +110,7 @@
           output.innerText = "Invalid scan.";
         }
         else if (has.includes(code)) {
-          output.innerText = "Do not add.";
+          output.innerText = "DO NOT add " + code;
           beep(300, 0.2);
         } else {
           output.innerText = "Add " + code;
@@ -105,12 +123,23 @@
           console.log(split(code));
           has.push(code);
         }
-        input.value = "";
 
         has = has.sort();
 
         var list = document.getElementById("list");
-        list.innerText = "Count: " + has.length + "\n" + (has.map(h => h + "\n")).toString().replace(",", "");
+        list.innerText = "Count: " + has.length + "\n";
+        let lastSku = "";
+
+        let items = has.map(h => split(h));
+        items.sort((a, b) => a.sku > b.sku ? 1 : -1);
+
+        for (let item of items) {
+          if (item.sku !== lastSku) {
+            lastSku = item.sku;
+            list.innerHTML += "<br><b>" + item.sku + "</b><br><br>";
+          }
+          list.innerHTML += "&nbsp;&nbsp;&nbsp;&nbsp;" + item.color + " - " + item.size + "<br>";
+        }
       });
     };
 
