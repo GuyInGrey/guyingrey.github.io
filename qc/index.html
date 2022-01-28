@@ -1,136 +1,21 @@
 <html>
+
 <head>
-<script>
-  var audioContext = null;
-  var oscillatorNode = null;
-  var stopTime = 0;
-
-  function beep (frequency, durationSec, ramp=false)
-  {
-      if (oscillatorNode == null) {
-          audioContext = new (window.AudioContext || window.webkitAudioContext) ();
-          stopTime = audioContext.currentTime;
-
-          oscillatorNode = audioContext.createOscillator();
-          oscillatorNode.type = "sine";
-          oscillatorNode.connect (audioContext.destination);
-          if (ramp) {
-              oscillatorNode.frequency.setValueAtTime (frequency, stopTime);
-          }
-          oscillatorNode.start ();
-          oscillatorNode.onended = function() {
-              oscillatorNode = null;
-              audioContext = null;
-          }
-      }
-
-      if (ramp) {
-          oscillatorNode.frequency.linearRampToValueAtTime (frequency, stopTime); // value in hertz
-      } else {
-          oscillatorNode.frequency.setValueAtTime (frequency, stopTime);  // value in hertz
-      }
-
-      stopTime += durationSec;
-      oscillatorNode.stop (stopTime);
-  }
-
-
-
-
-
-
-
-  let get = (id, callback) => {
-  console.log("Connecting...");
-    let socket = new WebSocket("wss://sadmin.puttingheavenfirst.com");
-    socket.onmessage = (msg) => {
-      callback(msg.data);
-    };
-    socket.onopen = function(e) {
-      console.log("Connected");
-      socket.send(id);
-      console.log("Sent");
-    };
-  };
-  
-  let split = (code) => {
-    let a = code.lastIndexOf("-");
-    let size = code.substring(a + 1);
-    code = code.substring(0, a);
-    a = code.lastIndexOf("-");
-    let color = code.substring(a + 1);
-    code = code.substring(0, a);
-    let sku = code;
-    return {
-      sku: sku,
-      color: color,
-      size: size,
+  <script src="lookup.js"></script>
+  <script>
+    window.onload = function () {
+      lookup.post("A", {});
     }
-  };
-
-  let has = [];
-  let cache = [];
-
-  let btn = async () => {
-    var input = document.getElementById("myInput");
-    var output = document.getElementById("output");
-    v = input.value;
-    
-    if (cache.includes(v)) {
-      output.innerText = "Do not add.";
-        beep(300, 0.2);
-      input.value = "";
-      return;
-    }
-    
-    cache.push(v);
-    
-    get(v, (code) => {
-      console.log(code);
-      
-      if (code instanceof Blob) {
-        output.innerText = "Invalid scan.";
-      }
-      else if (has.includes(code)) {
-        output.innerText = "Do not add.";
-        beep(300, 0.2);
-      } else {
-        output.innerText = "Add " + code;
-        //var msg = new SpeechSynthesisUtterance();
-        //msg.text = code;
-        //window.speechSynthesis.speak(msg);
-        beep(1500, 0.1);
-        beep(1, 0.05);
-        beep(1500, 0.1);
-        console.log(split(code));
-        has.push(code);
-      }
-      input.value = "";
-
-      has = has.sort();
-        
-      var list = document.getElementById("list");
-      list.innerText = "Count: " + has.length + "\n" + (has.map(h => h + "\n")).toString().replace(",", "");
-    });
-  };
-  
-  window.onload = function() {
-    var input = document.getElementById("myInput");
-    input.addEventListener("keyup", function(event) {
-      if (event.keyCode === 13) {
-       event.preventDefault();
-       document.getElementById("myBtn").click();
-      }
-    });
-  }
-</script>
+  </script>
 </head>
+
 <body>
-    <a>Input Barcode</a>
-    <input type="text" id="myInput"></input>
-    <button id="myBtn" onclick="btn()">Button</button><br>
-    <a id="output">Waiting...</a><br><br>
-    <b>List: </b><br>
-    <a id="list"></a>
+  <a>Input Barcode</a>
+  <input type="text" id="myInput"></input>
+  <button id="myBtn" onclick="btn()">Button</button><br>
+  <a id="output">Waiting...</a><br><br>
+  <b>List: </b><br>
+  <a id="list"></a>
 </body>
+
 </html>
