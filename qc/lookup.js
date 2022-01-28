@@ -23,7 +23,7 @@ let lookup = {
       };
 
       if (lookup.token) {
-        headers["Authorization"] = `Bearer ${token}`;
+        //headers["Authorization"] = `Bearer ${token}`;
       }
 
       fetch(url, {
