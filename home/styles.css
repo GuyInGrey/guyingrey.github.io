@@ -51,23 +51,22 @@ body {
   text-align: center;
 }
 
-.header > img {
+.header>img {
   padding-top: 3vh;
   width: 35vw;
   height: auto;
 }
 
-.header > a {
+.header>a {
   padding-top: 3vh;
   padding-bottom: 1vh;
   color: #dfe6e9;
-  font-size: 3vw;
   display: inline-block;
   transition-duration: 0.1s;
   text-shadow: 3px 3px 0px black;
 }
 
-.header > a:hover {
+.header>a:hover {
   color: #636e72;
   text-shadow: 7px 7px 2px black;
   transform: translate(-10%, -10%);
@@ -78,7 +77,6 @@ body {
   text-align: center;
   color: #dfe6e9;
   text-shadow: 3px 3px 2px black;
-  font-size: 1vw;
 }
 
 .content {
@@ -87,37 +85,69 @@ body {
   flex-flow: column;
 }
 
-.contentItem {
-  padding: 5vmin 20vmin 5vmin 20vmin;
-  position: relative;
-  width: 50%;
-  align-self: center;
-  text-align: center;
-  
-  transition: all 0.3s ease;
+@media (min-aspect-ratio: 12/9) {
+  .contentItem {
+    width: 40%;
+  }
+
+  .contentItem:hover {
+    width: 45%;
+    height: auto;
+  }
+
+  .header>a {
+    font-size: 3vw;
+  }
+
+  .subText {
+    font-size: 1vw;
+  }
 }
 
-.contentItem:hover {
-  width: 55%;
-  height: auto;
+@media (max-aspect-ratio: 12/9) {
+  .contentItem {
+    width: 70%;
+  }
+
+  .contentItem:hover {
+    width: 70%;
+    height: auto;
+  }
+
+  .header>a {
+    font-size: 9vw;
+  }
+
+  .subText {
+    font-size: 4vw;
+  }
+}
+
+.contentItem {
+  margin: 5vmin 20vmin 5vmin 20vmin;
+  position: relative;
+  align-self: center;
+  text-align: center;
+
+  transition: all 0.3s ease;
 }
 
 .contentImage {
   width: 100%;
   height: auto;
-  box-shadow: 25px 25px 2px black;
+  box-shadow: 1.5vh 1.5vh 2px black;
 
   transition: all 0.3s ease;
 
-  -webkit-filter: grayscale(100%) brightness(50%);
+  -webkit-filter: grayscale(50%) brightness(50%);
   -moz-filter: grayscale(100%) brightness(50%);
-  filter: grayscale(100%) brightness(50%);
+  filter: grayscale(0%) brightness(50%);
 
 }
 
 .contentImage:hover {
-  box-shadow: 25px 25px 10px black;
-  
+  box-shadow: 25px 25px 10px #101010;
+
   -webkit-filter: grayscale(0%) brightness(75%);
   -moz-filter: grayscale(0%) brightness(75%);
   filter: grayscale(0%) brightness(75%);
@@ -142,12 +172,12 @@ body {
   right: 2vw;
 }
 
-.github > img {
-  width: 10vw;
+.github>img {
+  width: 12vw;
   height: auto;
   transition-duration: 0.3s;
 }
 
-.github > img:hover {
+.github>img:hover {
   width: 11vw;
 }
